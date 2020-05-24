@@ -3,11 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing brew..."
-      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       - echo "Installing Hugo..."
-      - brew install hugo
-  build:
+      - cd ~
+      - wget https://github.com/gohugoio/hugo/releases/download/v0.71.0/hugo_0.71.0_Linux-64bit.deb
+      - dpkg -i hugo*.deb
     commands:
       - hugo
       - echo "S3 Upload Beginning"
