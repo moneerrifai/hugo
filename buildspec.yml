@@ -1,0 +1,18 @@
+version: 0.2
+       
+phases:
+  install:
+    commands:
+      - echo "Installing brew..."
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      - echo "Installing Hugo..."
+      - brew install hugo
+  build:
+    commands:
+      - hugo
+      - echo "S3 Upload Beginning"
+      - aws s3 sync public/ s3://moneer-web-cicd/ --region us-east-1 --delete --acl public-read
+      - echo "S3 Upload Complete"
+  post_build:
+    commands:
+      - echo "Build complete"
