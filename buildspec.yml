@@ -4,9 +4,10 @@ phases:
   install:
     commands:
       - echo "Installing Hugo..."
-      - cd ~
       - wget https://github.com/gohugoio/hugo/releases/download/v0.71.0/hugo_0.71.0_Linux-64bit.deb
       - dpkg -i hugo*.deb
+      - pwd
+      - ls -latr
   build:
     commands:
       - hugo
